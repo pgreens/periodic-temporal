@@ -1,0 +1,41 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+
+group = 'com.paulgreenlee'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	providedRuntime
+}
+
+compileTestJava {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	options.compilerArgs += '-parameters'
+}
+
+def junitVersion = "5.1.0"
+
+dependencies {
+	
+	testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+	testCompile("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
+	testRuntime("org.junit.platform:junit-platform-launcher:1.1.0")
+	testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+	
+	testCompile 'org.hamcrest:hamcrest-library:1.3'
+}
